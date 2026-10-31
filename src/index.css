@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Refined typography styles */
+  h1, h2, h3, h4 {
+    letter-spacing: -0.015em;
+  }
+}
+
+/* Subtle architectural dot grid */
+.bg-grid-subtle {
+  background-size: 32px 32px;
+  background-image: 
+    radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+.bg-grid-light-subtle {
+  background-size: 28px 28px;
+  background-image: 
+    radial-gradient(circle, rgba(15, 23, 42, 0.06) 1px, transparent 1px);
+}
+
+/* Clean border rule styling */
+.editorial-border {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.editorial-border-light {
+  border-color: rgba(15, 23, 42, 0.09);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #050d1a;
+}
+::-webkit-scrollbar-thumb {
+  background: #193e6d;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0d9488;
+}
