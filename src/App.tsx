@@ -3,6 +3,7 @@ import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { VisionSection } from './components/VisionSection';
 import { OpportunitySection } from './components/OpportunitySection';
+import { WhatHappensSection } from './components/WhatHappensSection';
 import { ProfilesDirectorySection } from './components/ProfilesDirectorySection';
 import { LifeAtMawthiqSection } from './components/LifeAtMawthiqSection';
 import { JourneySection } from './components/JourneySection';
@@ -30,23 +31,26 @@ export function App() {
         {/* 3. Opportunity: Sector Priorities & Philosophy */}
         <OpportunitySection />
 
-        {/* 4. Who We Look For: SPC Member Directory / Categorised Accordion */}
+        {/* 4. What Happens at Exep-Ridge (Exact SPC Interactive Feature: Disabled/Active Tabs + Live Photo/Content) */}
+        <WhatHappensSection />
+
+        {/* 5. Who We Look For: SPC Member Directory / Categorised Accordion */}
         <ProfilesDirectorySection onOpenApply={() => setIsApplyModalOpen(true)} />
 
-        {/* 5. Life at Mawthiq: SPC Candid Photo Strip */}
+        {/* 6. Life at Mawthiq: SPC Candid Photo Strip */}
         <LifeAtMawthiqSection />
 
-        {/* 6. Journey: SPC Slate-Blue Two-Column Execution Guide */}
+        {/* 7. Journey: SPC Slate-Blue Two-Column Execution Guide */}
         <JourneySection onOpenApply={() => setIsApplyModalOpen(true)} />
 
-        {/* 7. Principles: EF Numbered High-Conviction Manifestos */}
+        {/* 8. Principles: EF Numbered High-Conviction Manifestos */}
         <PrinciplesSection />
 
-        {/* 8. Final CTA: EF Bottom Banner + SPC Inquiries Band */}
+        {/* 9. Final CTA: EF Bottom Banner + SPC Inquiries Band */}
         <FinalCtaSection onOpenApply={() => setIsApplyModalOpen(true)} />
       </main>
 
-      {/* 9. Footer: Clean Light Paper Background + Clear Institutional Disclaimer */}
+      {/* 10. Footer: Clean Light Paper Background + Clear Institutional Disclaimer */}
       <Footer />
 
       {/* Interactive Application Modal */}

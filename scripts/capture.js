@@ -25,24 +25,32 @@ async function capture() {
   console.log('Capturing Desktop...');
   await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: 2 });
   await page.goto('http://localhost:5173/', { waitUntil: 'networkidle0' });
-  await new Promise(r => setTimeout(r, 800)); // wait for framer motion
-
-  // Full page
-  await page.screenshot({ path: path.join(screenshotsDir, 'desktop-full.png'), fullPage: true });
-  await page.screenshot({ path: path.join(brainScreenshotsDir, 'desktop-full.png'), fullPage: true });
+  await new Promise(r => setTimeout(r, 1000));
 
   // Hero Viewport
   await page.screenshot({ path: path.join(screenshotsDir, 'desktop-hero.png'), fullPage: false });
   await page.screenshot({ path: path.join(brainScreenshotsDir, 'desktop-hero.png'), fullPage: false });
+
+  // Scroll to WhatHappensSection (SPC Feature) and screenshot
+  console.log('Capturing WhatHappensSection...');
+  const whatHappensEl = await page.evaluate(() => {
+    const el = document.querySelector('section.bg-\\[\\#CAD8E4\\]');
+    if (el) {
+      el.scrollIntoView();
+      return true;
+    }
+    return false;
+  });
+
+  await new Promise(r => setTimeout(r, 800));
+  await page.screenshot({ path: path.join(screenshotsDir, 'what-happens-spc.png'), fullPage: false });
+  await page.screenshot({ path: path.join(brainScreenshotsDir, 'what-happens-spc.png'), fullPage: false });
 
   // Mobile captures
   console.log('Capturing Mobile...');
   await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true, deviceScaleFactor: 2 });
   await page.goto('http://localhost:5173/', { waitUntil: 'networkidle0' });
   await new Promise(r => setTimeout(r, 800));
-
-  await page.screenshot({ path: path.join(screenshotsDir, 'mobile-full.png'), fullPage: true });
-  await page.screenshot({ path: path.join(brainScreenshotsDir, 'mobile-full.png'), fullPage: true });
 
   await page.screenshot({ path: path.join(screenshotsDir, 'mobile-hero.png'), fullPage: false });
   await page.screenshot({ path: path.join(brainScreenshotsDir, 'mobile-hero.png'), fullPage: false });
