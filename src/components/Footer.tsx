@@ -3,112 +3,93 @@ import { Shield } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-navy-950 border-t border-white/10 pt-16 pb-12 text-right">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="bg-[#F8F6EF] text-slate-800 pt-16 pb-12 text-right border-t border-[#E2DDD3]">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
         
         {/* Top Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-[#E2DDD3]">
           
-          {/* Brand & Mission */}
+          {/* Brand Info */}
           <div className="md:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
-              {/* Official Logo Container */}
-              <div className="w-10 h-10 rounded-xl overflow-hidden bg-white p-0.5 shadow-md border border-slate-700/60 shrink-0">
+              <div className="h-11 w-auto max-w-[180px] flex items-center">
                 <img
-                  src="/assets/mawthiq-logo.jpg"
-                  alt="شعار مَوْثِق الرسمي"
-                  className="w-full h-full object-contain"
+                  src="/assets/exep-ridge-logo.jpg"
+                  alt="جسر الخبرة | EXEP-RIDGE"
+                  className="h-10 w-auto object-contain"
                 />
               </div>
-
-              <div>
-                <span className="font-bold text-xl text-white block">مَوْثِق</span>
-                <span className="text-xs text-slate-400 font-light">بيئة بناء واستقطاب الكفاءات الطموحة</span>
-              </div>
             </div>
-
-            <p className="text-sm text-slate-400 leading-relaxed max-w-sm pt-2">
-              مبادرة تهدف إلى تمكين أصحاب الفكر والمهارات من تحويل إمكاناتهم العالية إلى مشاريع وكيانات نوعية تخدم الاقتصاد الحقيقي وتصنع أثراً مستداماً.
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-sm font-light pt-1">
+              <strong>جسر الخبرة (EXEP-RIDGE) — مبادرة مَوْثِق</strong>: نبني حلولاً برمجية متكاملة تربط الخبرة بالتقنية لنساعد أعمالك ومشاريعك على النمو والتوسع المستدام.
             </p>
           </div>
 
           {/* Quick Links */}
           <div className="md:col-span-3 space-y-3">
-            <h4 className="text-xs font-mono uppercase tracking-widest text-turquoise font-semibold">
-              روابط سريعة
+            <h4 className="text-xs text-[#0F2D5B] font-bold uppercase tracking-mono">
+              أقسام المبادرة
             </h4>
-            <ul className="space-y-2 text-sm text-slate-400">
-              <li>
-                <a href="#vision" className="hover:text-white transition-colors">الرؤية والهدف</a>
-              </li>
-              <li>
-                <a href="#opportunity" className="hover:text-white transition-colors">الفرصة والتباين</a>
-              </li>
-              <li>
-                <a href="#profiles" className="hover:text-white transition-colors">الكفاءات المطلوبة</a>
-              </li>
-              <li>
-                <a href="#principles" className="hover:text-white transition-colors">ميثاق المبادئ</a>
-              </li>
-              <li>
-                <a href="#journey" className="hover:text-white transition-colors">رحلة البناء</a>
-              </li>
+            <ul className="space-y-2 text-xs sm:text-sm text-slate-600">
+              <li><a href="#vision" className="hover:text-[#0F2D5B] transition-colors">الرؤية والحلول البرمجية</a></li>
+              <li><a href="#opportunity" className="hover:text-[#0F2D5B] transition-colors">فلسفة المبادرة والفرصة</a></li>
+              <li><a href="#directory" className="hover:text-[#0F2D5B] transition-colors">الكفاءات المستهدفة</a></li>
+              <li><a href="#journey" className="hover:text-[#0F2D5B] transition-colors">رحلة البناء والتحقق</a></li>
+              <li><a href="#principles" className="hover:text-[#0F2D5B] transition-colors">ميثاق المبادئ</a></li>
             </ul>
           </div>
 
-          {/* Contact & Hours */}
+          {/* Contact */}
           <div className="md:col-span-4 space-y-3">
-            <h4 className="text-xs font-mono uppercase tracking-widest text-turquoise font-semibold">
-              التواصل والاستفسارات
+            <h4 className="text-xs text-[#0F2D5B] font-bold uppercase tracking-mono">
+              التواصل والاستفسار
             </h4>
-            <p className="text-sm text-slate-400 leading-relaxed">
-              نرحب باستفسارات الكفاءات والشركاء المحتملين عبر البريد المباشر:
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-light">
+              نرحب بتواصل الكفاءات الجادة والخبراء القطاعيين عبر البريد المباشر:
             </p>
             <div className="pt-1">
               <a
-                href="mailto:contact@mawthiq.org"
-                className="text-sm font-mono text-white hover:text-turquoise transition-colors"
+                href="mailto:contact@exep-ridge.com"
+                className="text-xs sm:text-sm font-mono text-[#0F2D5B] hover:text-[#2563EB] font-bold underline"
                 dir="ltr"
               >
-                contact@mawthiq.org
+                contact@exep-ridge.com
               </a>
             </div>
-            <div className="text-xs text-slate-500 font-mono pt-2">
+            <div className="text-[11px] font-mono text-slate-500 pt-1">
               المملكة العربية السعودية
             </div>
           </div>
 
         </div>
 
-        {/* Clear Institutional / Commercial Distinction Notice (Explicit Requirement) */}
-        <div className="py-8 border-b border-white/5">
-          <div className="bg-navy-900/40 border border-white/5 rounded-2xl p-6 sm:p-7 flex items-start gap-4">
-            <div className="p-2 rounded-lg bg-white/5 text-slate-400 shrink-0 mt-0.5">
-              <Shield className="w-5 h-5 text-turquoise/70" />
-            </div>
-            <div className="text-xs leading-relaxed text-slate-400 space-y-1">
-              <strong className="text-slate-200 block text-sm font-semibold mb-1">
-                تنويه تنظيمي وإخلاء مسؤولية مؤسسي:
+        {/* Regulatory / Commercial Distinction Notice */}
+        <div className="py-8 border-b border-[#E2DDD3]">
+          <div className="bg-[#F2EFE4] border border-[#E2DDD3] p-6 rounded-xl flex items-start gap-3">
+            <Shield className="w-5 h-5 text-[#D4AF7C] shrink-0 mt-0.5" />
+            <div className="text-xs text-slate-600 leading-relaxed space-y-1">
+              <strong className="text-[#0F2D5B] block text-sm font-semibold mb-1">
+                تنويه تنظيمي وتوضيح مؤسسي:
               </strong>
               <p>
-                مبادرة <strong>«مَوْثِق»</strong> هي بيئة تمكين فكري وعملي واستقطاب للكفاءات الطموحة، وهي مستقلة تماماً ومتميزة عن أي كيانات تجارية، شركات ناشئة، أو مشاريع ربحية قد تنشأ مستقبلاً كنتيجة لمخرجات المبادرة.
+                مبادرة «مَوْثِق — جسر الخبرة» هي بيئة استقطاب وتمكين لأصحاب الخبرات والكفاءات التقنية، وهي مستقلة تماماً ومنفصلة عن أي كيانات تجارية أو استثمارية قد تنشأ لاحقاً كنتيجة لمخرجات المبادرة.
               </p>
               <p>
-                لا تشكل المشاركة في المبادرة عرض توظيف تقليدي، ولا تتضمن وعوداً بتمويل مالي مضمون، عوائد استثمارية مسبقة، أو نسب ملكية محددة. التقييم والتعاون يتمان استناداً إلى الكفاءة الفعلية والتوافق المشترك في مراحل البناء.
+                لا تشكل المشاركة في المبادرة عروض توظيف تقليدية ولا وعوداً مالية مسبقة، بل تتيح مساحة عمل مشتركة مبنية على الكفاءة والاستحقاق العملي في كافة المراحل.
               </p>
             </div>
           </div>
         </div>
 
-        {/* Copyright & Credits */}
+        {/* Copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
           <div>
-            جميع الحقوق محفوظة لمبادرة مَوْثِق © {new Date().getFullYear()}
+            جميع الحقوق محفوظة لمبادرة مَوْثِق | جسر الخبرة © {new Date().getFullYear()}
           </div>
-          <div className="flex items-center gap-4">
-            <span>تصميم تحريري عربي أصيل</span>
+          <div className="flex items-center gap-2">
+            <span>EXEP-RIDGE SOFTWARE SOLUTIONS</span>
             <span>•</span>
-            <span className="text-turquoise">Mawthiq Initiative</span>
+            <span className="text-[#0F2D5B] font-bold">Mawthiq</span>
           </div>
         </div>
 

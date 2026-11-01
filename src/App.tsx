@@ -3,9 +3,10 @@ import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { VisionSection } from './components/VisionSection';
 import { OpportunitySection } from './components/OpportunitySection';
-import { ProfilesSection } from './components/ProfilesSection';
-import { PrinciplesSection } from './components/PrinciplesSection';
+import { ProfilesDirectorySection } from './components/ProfilesDirectorySection';
+import { LifeAtMawthiqSection } from './components/LifeAtMawthiqSection';
 import { JourneySection } from './components/JourneySection';
+import { PrinciplesSection } from './components/PrinciplesSection';
 import { FinalCtaSection } from './components/FinalCtaSection';
 import { Footer } from './components/Footer';
 import { ApplicationModal } from './components/ApplicationModal';
@@ -14,38 +15,41 @@ export function App() {
   const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-navy-950 text-slate-100 flex flex-col font-sans selection:bg-turquoise/30 selection:text-turquoise-200">
-      {/* Sticky Navigation */}
+    <div className="min-h-screen bg-[#F8F6EF] text-[#0F172A] flex flex-col font-sans selection:bg-[#D4AF7C]/30 selection:text-[#0F2D5B]">
+      {/* Top Navbar */}
       <Navbar onOpenApply={() => setIsApplyModalOpen(true)} />
 
-      {/* Main Content Sections */}
+      {/* Main Editorial Flow */}
       <main className="flex-1">
-        {/* 1. Hero */}
+        {/* 1. Hero: EF High Conviction Pitch + SPC Airy Layout */}
         <HeroSection onOpenApply={() => setIsApplyModalOpen(true)} />
 
-        {/* 2. Vision */}
+        {/* 2. Vision: 5 Core Software Capabilities (From Brand Guide) + EF Manifesto */}
         <VisionSection />
 
-        {/* 3. Opportunity */}
+        {/* 3. Opportunity: Sector Priorities & Philosophy */}
         <OpportunitySection />
 
-        {/* 4. Who We Are Looking For */}
-        <ProfilesSection onOpenApply={() => setIsApplyModalOpen(true)} />
+        {/* 4. Who We Look For: SPC Member Directory / Categorised Accordion */}
+        <ProfilesDirectorySection onOpenApply={() => setIsApplyModalOpen(true)} />
 
-        {/* 5. Principles */}
+        {/* 5. Life at Mawthiq: SPC Candid Photo Strip */}
+        <LifeAtMawthiqSection />
+
+        {/* 6. Journey: SPC Slate-Blue Two-Column Execution Guide */}
+        <JourneySection onOpenApply={() => setIsApplyModalOpen(true)} />
+
+        {/* 7. Principles: EF Numbered High-Conviction Manifestos */}
         <PrinciplesSection />
 
-        {/* 6. Journey */}
-        <JourneySection />
-
-        {/* 7. Final CTA */}
+        {/* 8. Final CTA: EF Bottom Banner + SPC Inquiries Band */}
         <FinalCtaSection onOpenApply={() => setIsApplyModalOpen(true)} />
       </main>
 
-      {/* 8. Footer */}
+      {/* 9. Footer: Clean Light Paper Background + Clear Institutional Disclaimer */}
       <Footer />
 
-      {/* Application Dialog Modal */}
+      {/* Interactive Application Modal */}
       <ApplicationModal
         isOpen={isApplyModalOpen}
         onClose={() => setIsApplyModalOpen(false)}

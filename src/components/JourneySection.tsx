@@ -1,90 +1,107 @@
 import React from 'react';
+import { ArrowLeft, CheckCircle2 } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { journeyStepsData } from '../data/content';
-import { Milestone, CheckCircle } from 'lucide-react';
 
-export const JourneySection: React.FC = () => {
+export const JourneySection: React.FC<{ onOpenApply: () => void }> = ({ onOpenApply }) => {
   return (
-    <section id="journey" className="py-24 md:py-36 bg-navy-900 border-t border-b border-white/5 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="journey" className="bg-[#E7EEF5] text-[#0F172A] py-20 md:py-28 text-right border-b border-[#CCD9E6]">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
         
-        {/* Section Header */}
-        <div className="max-w-3xl mb-20">
-          <div className="inline-flex items-center gap-2 text-turquoise text-xs font-mono uppercase tracking-widest mb-3">
-            <Milestone className="w-3.5 h-3.5" />
-            <span>رحلة البناء في مَوْثِق</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-6">
-            كيف تنتقل من <span className="text-turquoise">الإمكانات الكامنة</span> إلى الأثر المستدام؟
-          </h2>
-          <p className="text-base sm:text-lg text-slate-300 font-light leading-relaxed">
-            مسار منظم ومرن في آنٍ واحد، مصمم لتقليل المخاطر واختبار التوافق الفكري والعملي قبل الالتزام الكامل ببناء الكيان.
-          </p>
-        </div>
+        {/* Two-Column Split (SPC Slate-Blue Style) */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
+          {/* Sticky Navigation Sidebar (Left in LTR, Right in RTL) */}
+          <div className="md:col-span-4 sticky top-28 space-y-6">
+            <div>
+              <span className="text-xs font-bold text-[#2563EB] uppercase block mb-2 tracking-mono">
+                دليل المسار التنفيذي
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-black text-[#0F2D5B]">
+                رحلة البناء في جسر الخبرة
+              </h3>
+              <p className="text-xs text-slate-600 mt-2 leading-relaxed">
+                مسار منهجي مصمم لتقليل المخاطر واختبار التوافق قبل الالتزام الكامل ببناء الكيان.
+              </p>
+            </div>
 
-        {/* Steps Grid / Timeline */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-          {journeyStepsData.map((stepItem, index) => (
-            <div
-              key={index}
-              className="bg-navy-950 border border-white/10 rounded-3xl p-8 sm:p-10 flex flex-col justify-between hover:border-turquoise/40 transition-all duration-300 relative group"
-            >
-              <div>
-                {/* Step Metadata Badge */}
-                <div className="flex items-center justify-between mb-6">
-                  <span className="text-xs font-mono font-semibold px-3 py-1 rounded-full bg-turquoise/10 text-turquoise border border-turquoise/20">
+            <nav className="space-y-2.5 text-sm font-bold text-slate-700">
+              <a href="#step-1" className="block hover:text-[#0F2D5B] transition-colors py-1">
+                المرحلة 01 / التقييم النوعي ومواءمة الرؤية
+              </a>
+              <a href="#step-2" className="block hover:text-[#0F2D5B] transition-colors py-1">
+                المرحلة 02 / الاندماج وبناء فرق التأسيس
+              </a>
+              <a href="#step-3" className="block hover:text-[#0F2D5B] transition-colors py-1">
+                المرحلة 03 / النمذجة والتحقق الميداني
+              </a>
+              <a href="#step-4" className="block hover:text-[#0F2D5B] transition-colors py-1">
+                المرحلة 04 / تأسيس الكيان والانطلاق
+              </a>
+            </nav>
+
+            <div className="pt-4 border-t border-[#CCD9E6]">
+              <button
+                onClick={onOpenApply}
+                className="inline-flex items-center gap-2 text-sm font-bold text-[#0F2D5B] hover:text-[#2563EB] underline underline-offset-4"
+              >
+                <span>ابدأ الحوار مع فريقنا الآن</span>
+                <ArrowLeft className="w-4 h-4 text-[#D4AF7C]" />
+              </button>
+            </div>
+          </div>
+
+          {/* Right Content Column (Steps & Detailed Cards) */}
+          <div className="md:col-span-8 space-y-10">
+            {journeyStepsData.map((stepItem, index) => (
+              <motion.div
+                key={index}
+                id={`step-${index + 1}`}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4 }}
+                className="bg-white/95 backdrop-blur-sm border border-[#CCD9E6] p-8 sm:p-10 rounded-xl space-y-5 shadow-xs"
+              >
+                <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+                  <span className="text-xs font-bold text-[#0F2D5B] px-2.5 py-1 rounded bg-[#F8F6EF] border border-[#E2DDD3]">
                     {stepItem.step}
                   </span>
-                  <span className="text-xs font-mono text-slate-400">
+                  <span className="text-xs font-mono text-slate-500">
                     {stepItem.duration}
                   </span>
                 </div>
 
-                {/* Step Title & Focus */}
-                <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-turquoise transition-colors">
+                <h4 className="text-2xl font-bold text-[#0F2D5B]">
                   {stepItem.title}
-                </h3>
-                <div className="text-xs font-mono text-slate-400 mb-5">
-                  <span className="text-slate-500">التركيز: </span>
-                  {stepItem.focus}
+                </h4>
+
+                <div className="text-xs text-slate-600">
+                  <strong className="text-[#0F2D5B]">محور التركيز: </strong>
+                  <span>{stepItem.focus}</span>
                 </div>
 
-                {/* Description */}
-                <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-8">
+                <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-light">
                   {stepItem.description}
                 </p>
-              </div>
 
-              {/* Deliverables Box */}
-              <div className="pt-6 border-t border-white/10">
-                <span className="text-xs font-mono text-slate-400 uppercase tracking-widest block mb-3">
-                  مخرجات المرحلة:
-                </span>
-                <ul className="space-y-2">
-                  {stepItem.deliverables.map((d, dIdx) => (
-                    <li key={dIdx} className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-300">
-                      <CheckCircle className="w-4 h-4 text-turquoise shrink-0" />
-                      <span>{d}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Reassurance Banner */}
-        <div className="mt-16 p-8 rounded-2xl bg-white/[0.02] border border-white/5 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="text-right">
-            <h4 className="text-base font-bold text-white mb-1">
-              المرونة والوضوح في كل مرحلة
-            </h4>
-            <p className="text-xs sm:text-sm text-slate-400">
-              كل خطوة تُبنى على التحقق المتبادل. إذا تبيّن عدم ملاءمة المسار في أي نقطة، يتم إنهاء التفاعل بكل احترام واحترافية ودون أي التزامات مرهقة.
-            </p>
+                <div className="pt-4 border-t border-slate-100">
+                  <span className="text-xs font-bold text-[#94A3B8] uppercase block mb-2.5 tracking-mono">
+                    المخرجات الأساسية للمرحلة:
+                  </span>
+                  <ul className="space-y-2 text-xs sm:text-sm text-slate-800">
+                    {stepItem.deliverables.map((item, dIdx) => (
+                      <li key={dIdx} className="flex items-center gap-2.5">
+                        <CheckCircle2 className="w-4 h-4 text-[#2563EB] shrink-0" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            ))}
           </div>
-          <span className="text-xs font-mono text-turquoise shrink-0 font-medium px-3.5 py-1.5 rounded-lg bg-navy-950 border border-turquoise/20">
-            احترام الوقت المتبادل
-          </span>
+
         </div>
 
       </div>

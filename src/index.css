@@ -3,49 +3,43 @@
 @tailwind utilities;
 
 @layer base {
-  html {
+  html, body {
+    background-color: #F8F6EF;
+    color: #0F172A;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    letter-spacing: normal;
   }
 
-  /* Refined typography styles */
-  h1, h2, h3, h4 {
-    letter-spacing: -0.015em;
+  /* Ensure Arabic cursive script is never broken by letter-spacing */
+  h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, select {
+    letter-spacing: normal;
+  }
+
+  .tracking-mono {
+    letter-spacing: 0.06em;
   }
 }
 
-/* Subtle architectural dot grid */
-.bg-grid-subtle {
-  background-size: 32px 32px;
-  background-image: 
-    radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+/* Hairline border rule like EF & SPC with Brand Warmth */
+.editorial-rule {
+  border-color: #E2DDD3;
 }
 
-.bg-grid-light-subtle {
-  background-size: 28px 28px;
-  background-image: 
-    radial-gradient(circle, rgba(15, 23, 42, 0.06) 1px, transparent 1px);
-}
-
-/* Clean border rule styling */
-.editorial-border {
-  border-color: rgba(255, 255, 255, 0.08);
-}
-
-.editorial-border-light {
-  border-color: rgba(15, 23, 42, 0.09);
+.editorial-rule-dark {
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #050d1a;
+  background: #F8F6EF;
 }
 ::-webkit-scrollbar-thumb {
-  background: #193e6d;
-  border-radius: 4px;
+  background: #D4AF7C;
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #0d9488;
+  background: #B8925B;
 }

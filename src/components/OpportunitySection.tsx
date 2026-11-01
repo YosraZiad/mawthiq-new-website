@@ -1,92 +1,87 @@
 import React from 'react';
-import { comparisonData } from '../data/content';
-import { CheckCircle2, XCircle } from 'lucide-react';
+import { ArrowLeft, CheckCircle2 } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export const OpportunitySection: React.FC = () => {
   return (
-    <section id="opportunity" className="py-24 md:py-36 bg-navy-950 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="opportunity" className="bg-[#F8F6EF] text-[#0F172A] py-20 md:py-28 text-right border-b border-[#E2DDD3]">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
         
-        {/* Section Header */}
-        <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 text-turquoise text-xs font-mono uppercase tracking-widest mb-3">
-            <span>الفرصة والتباين</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-6">
-            لماذا يختلف نهج <span className="text-turquoise">مَوْثِق</span> عن المسارات المعتادة؟
-          </h2>
-          <p className="text-base sm:text-lg text-slate-300 font-light leading-relaxed">
-            معظم المبادرات تسعى لتأطير الكفاءات داخل قوالب مسبقة الصنع. في مَوْثِق، نؤمن بأن أصحاب الإمكانات الاستثنائية يحتاجون إلى مساحة حقيقية للاختبار والمبادرة، وليس إلى المزيد من التوجيه النظري.
-          </p>
-        </div>
+        {/* Section Tag */}
+        <span className="text-xs font-bold text-[#D4AF7C] uppercase block mb-3 tracking-mono">
+          فلسفة المبادرة والفرصة
+        </span>
 
-        {/* Editorial Comparative Matrix */}
-        <div className="bg-navy-900/60 border border-white/10 rounded-3xl overflow-hidden backdrop-blur-sm">
-          
-          {/* Header Row */}
-          <div className="grid grid-cols-1 md:grid-cols-12 bg-white/[0.02] border-b border-white/10 p-6 sm:p-8 font-mono text-xs uppercase tracking-wider text-slate-400">
-            <div className="md:col-span-3 text-slate-300 font-bold text-sm">
-              محور التقييم والمقارنة
-            </div>
-            <div className="md:col-span-4 text-slate-400 mt-2 md:mt-0 flex items-center gap-2">
-              <XCircle className="w-4 h-4 text-slate-500" />
-              <span>المسارات والبرامج التقليدية</span>
-            </div>
-            <div className="md:col-span-5 text-turquoise font-semibold mt-2 md:mt-0 flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-turquoise" />
-              <span>نهج مَوْثِق العملي</span>
-            </div>
-          </div>
+        {/* Section Title */}
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#0F2D5B] leading-tight mb-8 max-w-4xl">
+          ندعمك للانتقال من الفكرة والخبرة الكامنة إلى أنظمة برمجية حقيقية وكيانات مستدامة.
+        </h2>
 
-          {/* Matrix Rows */}
-          <div className="divide-y divide-white/5">
-            {comparisonData.map((item, idx) => (
-              <div
-                key={idx}
-                className="grid grid-cols-1 md:grid-cols-12 p-6 sm:p-8 items-start gap-4 md:gap-6 hover:bg-white/[0.015] transition-colors"
-              >
-                {/* Dimension Title */}
-                <div className="md:col-span-3 font-semibold text-white text-base">
-                  {item.dimension}
-                </div>
-
-                {/* Traditional Approach */}
-                <div className="md:col-span-4 text-slate-400 text-sm sm:text-base leading-relaxed pl-0 md:pl-4">
-                  <span className="md:hidden text-xs font-mono text-slate-500 block mb-1">النمط التقليدي:</span>
-                  {item.traditional}
-                </div>
-
-                {/* Mawthiq Approach */}
-                <div className="md:col-span-5 text-slate-100 font-medium text-sm sm:text-base leading-relaxed bg-turquoise/5 md:bg-transparent p-4 md:p-0 rounded-xl md:rounded-none border border-turquoise/10 md:border-none">
-                  <span className="md:hidden text-xs font-mono text-turquoise block mb-1">نهج مَوْثِق:</span>
-                  {item.mawthiq}
-                </div>
-              </div>
-            ))}
-          </div>
-
-        </div>
-
-        {/* Narrative Callout Block */}
-        <div className="mt-12 p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-navy-900 to-navy-850 border border-white/10 flex flex-col lg:flex-row items-center justify-between gap-8">
-          <div className="max-w-2xl">
-            <span className="text-xs font-mono text-turquoise uppercase tracking-wider block mb-2">
-              القناعة الجوهرية
-            </span>
-            <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">
-              الفرصة ليست وظيفة تُشغل، بل مساحة تُبنى
-            </h3>
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-              إذا كنت تبحث عن الأمان الوظيفي النمطي، فهناك قنوات أخرى تناسبك. أما إذا كنت تبحث عن بيئة تضعك أمام تحديات تستثير أقصى إمكاناتك وتهيئك لقيادة مبادرات مستقلة، فهنا موقعك الطبيعي.
+        {/* Two-Column Narrative (SPC Style) */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 items-start mb-16">
+          <div className="md:col-span-7 space-y-6 text-slate-700 text-lg leading-relaxed font-light">
+            <p>
+              أصحاب الخبرات العميقة في قطاعات كالتجارة، الخدمات اللوجستية، سلاسل الإمداد، أو القطاعات المالية غالباً ما يواجهون عائقاً جوهرياً: <strong>كيف يحولون تجاربهم الميدانية إلى برمجيات وأنظمة متقدمة؟</strong>
+            </p>
+            <p>
+              شركات البرمجة التقليدية تطبق ما يُطلب منها دون فهم عميق للبيزنس، والمستشارون يقدمون أوراقاً ونظريات دون كتابة كود. هنا يتدخل <strong>جسر الخبرة</strong> كشريك تأسيس وتقنية متكامل، نتقاسم معك الرؤية، نبني النواة الهندسية، ونمكّن المبادرة من التوسع المستقل.
             </p>
           </div>
 
-          <div className="shrink-0">
+          <motion.div
+            whileHover={{ y: -2 }}
+            className="md:col-span-5 bg-white border border-[#E2DDD3] p-7 sm:p-8 rounded-xl space-y-4 shadow-xs"
+          >
+            <span className="text-xs font-bold text-[#D4AF7C] block uppercase">
+              معايير الشراكة في جسر الخبرة
+            </span>
+            <h3 className="text-xl font-bold text-[#0F2D5B]">
+              لماذا يختلف نموذجنا؟
+            </h3>
+            <ul className="space-y-3.5 text-sm text-slate-700 leading-relaxed pt-2">
+              <li className="flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-[#2563EB] shrink-0 mt-0.5" />
+                <span><strong>كفاءة هندسية حقيقية</strong> تصنع المعيار ولا تعتمد على الحلول الجاهزة الهشة.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-[#2563EB] shrink-0 mt-0.5" />
+                <span><strong>طاولة مستديرة من النظراء</strong> تجمع بين عمق التخصص ودقة الكود.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-[#2563EB] shrink-0 mt-0.5" />
+                <span><strong>استقلالية تامة للمبادرة</strong> لتصبح كياناً قائماً بذاته في السوق.</span>
+              </li>
+            </ul>
+          </motion.div>
+        </div>
+
+        {/* Priority Focus Sectors */}
+        <div className="pt-10 border-t border-[#E2DDD3]">
+          <h3 className="text-xs font-bold text-[#94A3B8] uppercase mb-6 tracking-mono">
+            مجالات الاهتمام ذات الأولوية في المبادرة:
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm">
+            <div className="border-r-2 border-[#D4AF7C] pr-4 space-y-1">
+              <h4 className="font-bold text-[#0F2D5B] text-base">الأنظمة الإدارية وسلاسل الإمداد</h4>
+              <p className="text-slate-600 text-xs sm:text-sm">أتمتة العمليات اللوجستية وتتبع الشحنات وإدارة المخزون المعقد.</p>
+            </div>
+            <div className="border-r-2 border-[#D4AF7C] pr-4 space-y-1">
+              <h4 className="font-bold text-[#0F2D5B] text-base">التقنيات المالية والمدفوعات</h4>
+              <p className="text-slate-600 text-xs sm:text-sm">بناء بوابات المعاملات الآمنة وإدارة المطابقات المالية والمحاسبية.</p>
+            </div>
+            <div className="border-r-2 border-[#D4AF7C] pr-4 space-y-1">
+              <h4 className="font-bold text-[#0F2D5B] text-base">المنصات التخصصية (B2B SaaS)</h4>
+              <p className="text-slate-600 text-xs sm:text-sm">حلول برمجية سحابية مصممة خصيصاً لخدمة قطاعات تجارية وتنظيمية مغلقة.</p>
+            </div>
+          </div>
+
+          <div className="mt-8">
             <a
-              href="#profiles"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold text-white bg-white/10 hover:bg-white/15 border border-white/10 transition-colors"
+              href="#directory"
+              className="inline-flex items-center gap-2 text-sm font-bold text-[#0F2D5B] hover:text-[#2563EB] underline underline-offset-4"
             >
-              <span>تعرف على الكفاءات المطلوبة</span>
+              <span>تعرّف على الملفات والكفاءات التي نبحث عنها</span>
+              <ArrowLeft className="w-4 h-4 text-[#D4AF7C]" />
             </a>
           </div>
         </div>
