@@ -60,10 +60,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenApply }) => {
       {/* Background Architectural Grid Pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#E2DDD3_1px,transparent_1px),linear-gradient(to_bottom,#E2DDD3_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-35 pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-12 pb-16 md:pt-20 md:pb-24">
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-10 pb-16 md:pt-16 md:pb-24">
         
-        {/* Editorial Top Slider Bar: Numbering + Status */}
-        <div className="flex items-center justify-between border-b border-[#E2DDD3] pb-4 mb-10 text-xs text-[#64748B]">
+        {/* Editorial Top Slider Bar: Badge + Numbering */}
+        <div className="flex items-center justify-between border-b border-[#E2DDD3] pb-4 mb-8 text-xs text-[#64748B]">
           <div className="flex items-center gap-3">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0F2D5B]/5 border border-[#D4AF7C]/40 text-[#0F2D5B] font-bold font-sans">
               <span className="w-2 h-2 rounded-full bg-[#D4AF7C] animate-pulse"></span>
@@ -82,7 +82,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenApply }) => {
                 قراءة متأنية
               </span>
             )}
-            <div className="text-sm font-bold text-[#0F2D5B] font-mono en-only" dir="ltr">
+            <div className="text-sm font-bold text-[#0F2D5B] font-mono" dir="ltr">
               <span className="text-[#D4AF7C]">{slide.number}</span>
               <span className="text-[#94A3B8] mx-1">/</span>
               <span>03</span>
@@ -90,33 +90,35 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenApply }) => {
           </div>
         </div>
 
-        {/* Main 60/40 Asymmetrical Editorial Grid */}
+        {/* 1. Full-Width Transparent Headline in Exactly ONE Single Line (Cairo Font) */}
+        <div className="w-full text-right mb-8">
+          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-[2.35rem] xl:text-[2.7rem] font-bold leading-tight font-sans whitespace-nowrap text-[#0F2D5B]/80">
+            {slide.title}
+          </h1>
+        </div>
+
+        {/* 2. Sub-Grid: Content & Actions (Right) + Architectural Blueprint Panel (Left) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
-          {/* Right Column (60%): High Conviction Editorial Manifesto */}
+          {/* Right Column (60%): Description + Quote Note + Action Buttons */}
           <div className="lg:col-span-7 text-right">
             <AnimatePresence mode="wait">
               <motion.div
                 key={slide.id}
-                initial={{ opacity: 0, y: 14 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -14 }}
-                transition={{ duration: 0.35, ease: 'easeOut' }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3, ease: 'easeOut' }}
                 className="space-y-6"
               >
-                {/* Main Headline from Management Document */}
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0F2D5B] leading-[1.25] font-sans">
-                  {slide.title}
-                </h1>
-
                 {/* Primary Content Paragraph */}
-                <p className="text-lg sm:text-xl text-slate-700 leading-relaxed font-light">
+                <p className="text-lg sm:text-xl text-slate-700 leading-relaxed font-light font-sans">
                   {slide.lead}
                 </p>
 
                 {/* Subtitle / Philosophy Note */}
                 <div className="p-4 rounded-lg bg-[#FAF8F2] border-r-4 border-[#D4AF7C] border-y border-l border-[#E2DDD3]">
-                  <p className="text-sm sm:text-base text-slate-800 font-medium">
+                  <p className="text-sm sm:text-base text-slate-800 font-medium font-sans leading-relaxed">
                     «نبني منظومة عمل متكاملة تكبر بالمشاركة الفعلية والمسؤولية المستدامة، ونحول طاقات الشركاء إلى قيمة تجارية وحلول قابلة للتوسع.»
                   </p>
                 </div>
@@ -125,7 +127,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenApply }) => {
                 <div className="pt-2 flex flex-wrap items-center gap-4">
                   <button
                     onClick={onOpenApply}
-                    className="group inline-flex items-center gap-3 px-7 py-3.5 bg-[#0F2D5B] text-white hover:bg-[#17407D] font-bold text-base rounded shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5 active:translate-y-0"
+                    className="group inline-flex items-center gap-3 px-7 py-3.5 bg-[#0F2D5B] text-white hover:bg-[#17407D] font-bold text-base rounded shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5 active:translate-y-0 font-sans"
                   >
                     <span>{slide.ctaPrimary}</span>
                     <ArrowLeft className="w-4 h-4 text-[#D4AF7C] transition-transform group-hover:-translate-x-1" />
@@ -133,7 +135,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenApply }) => {
 
                   <a
                     href={slide.secondaryTarget}
-                    className="inline-flex items-center gap-2 px-5 py-3.5 border border-[#E2DDD3] hover:border-[#D4AF7C] text-slate-800 hover:text-[#0F2D5B] font-semibold text-sm rounded bg-white/70 hover:bg-white transition-colors"
+                    className="inline-flex items-center gap-2 px-5 py-3.5 border border-[#E2DDD3] hover:border-[#D4AF7C] text-slate-800 hover:text-[#0F2D5B] font-bold text-sm rounded bg-white/70 hover:bg-white transition-colors font-sans"
                   >
                     <span>{slide.ctaSecondary}</span>
                     <ArrowDown className="w-4 h-4 text-[#D4AF7C]" />
@@ -157,12 +159,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenApply }) => {
                 {/* Blueprint Header */}
                 <div className="border-b border-[#E2DDD3] pb-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-[11px] font-mono tracking-mono text-[#D4AF7C] font-bold uppercase">
+                    <span className="text-[11px] font-mono text-[#D4AF7C] font-bold uppercase" dir="ltr">
                       MAWTHIQ ARCHITECTURE
                     </span>
                     <span className="w-2.5 h-2.5 rounded-full bg-[#2563EB]/80"></span>
                   </div>
-                  <h3 className="text-xl font-bold text-[#0F2D5B] mt-1">
+                  <h3 className="text-xl font-bold text-[#0F2D5B] mt-1 font-sans">
                     {slide.blueprint.title}
                   </h3>
                 </div>
@@ -177,7 +179,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenApply }) => {
                       <div className="w-6 h-6 rounded-md bg-[#0F2D5B] text-white flex items-center justify-center text-xs font-mono font-bold shrink-0 mt-0.5">
                         {idx + 1}
                       </div>
-                      <div className="flex-1">
+                      <div className="flex-1 font-sans">
                         <div className="text-sm font-bold text-[#0F2D5B]">
                           {item.label}
                         </div>
@@ -208,7 +210,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenApply }) => {
         </div>
 
         {/* Editorial Slider Bottom Control Bar */}
-        <div className="mt-12 pt-6 border-t border-[#E2DDD3] flex flex-col sm:flex-row items-center justify-between gap-5">
+        <div className="mt-12 pt-6 border-t border-[#E2DDD3] flex flex-col sm:flex-row items-center justify-between gap-5 font-sans">
           
           {/* Quick Stage Tabs: [01] [02] [03] */}
           <div className="flex items-center gap-2">
@@ -218,14 +220,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenApply }) => {
                 <button
                   key={s.id}
                   onClick={() => goToSlide(idx)}
-                  className={`flex items-center gap-2 px-3.5 py-1.5 rounded text-xs font-mono transition-all ${
+                  className={`flex items-center gap-2 px-3.5 py-1.5 rounded text-xs font-sans transition-all ${
                     isActive
                       ? 'bg-[#0F2D5B] text-white font-bold shadow-xs'
                       : 'bg-white/80 text-slate-600 border border-[#E2DDD3] hover:border-[#D4AF7C] hover:text-[#0F2D5B]'
                   }`}
                   aria-label={`الانتقال إلى الشريحة ${s.number}`}
                 >
-                  <span>{s.number}</span>
+                  <span className="font-mono">{s.number}</span>
                   <span className="hidden md:inline font-sans font-medium text-[11px]">
                     {s.title.slice(0, 26)}...
                   </span>

@@ -22,9 +22,9 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Cairo', 'Inter', 'system-ui', 'sans-serif'],
-        serif: ['Amiri', 'serif'],
-        mono: ['Inter', 'monospace'],
+        sans: ['Cairo', 'system-ui', 'sans-serif'],
+        serif: ['Cairo', 'system-ui', 'sans-serif'],
+        mono: ['Cairo', 'monospace'],
       },
     },
   },

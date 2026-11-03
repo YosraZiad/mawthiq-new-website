@@ -4,23 +4,21 @@
 
 @layer base {
   html, body {
+    font-family: 'Cairo', system-ui, -apple-system, sans-serif !important;
     background-color: #F8F6EF;
     color: #0F172A;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    letter-spacing: normal !important;
+  }
+
+  /* Unified Cairo Typography Across All Elements */
+  h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, select, label {
+    font-family: 'Cairo', system-ui, -apple-system, sans-serif !important;
     letter-spacing: normal !important;
   }
 
   /* Strict protection for Arabic cursive script */
-  *:lang(ar), [dir="rtl"], [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, 
-  [dir="rtl"] h4, [dir="rtl"] h5, [dir="rtl"] h6, [dir="rtl"] p, 
-  [dir="rtl"] span:not(.en-only), [dir="rtl"] a:not(.en-only), 
-  [dir="rtl"] button:not(.en-only), [dir="rtl"] div:not(.en-only) {
+  *:lang(ar), [dir="rtl"], [dir="rtl"] * {
     letter-spacing: normal !important;
-  }
-
-  /* Latin only tracking */
-  .en-only {
-    letter-spacing: 0.06em;
   }
 }
 
