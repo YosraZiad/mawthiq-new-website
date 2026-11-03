@@ -15,7 +15,7 @@ export const Footer: React.FC = () => {
             <div className="flex items-center gap-3">
               <div className="h-11 w-auto max-w-[210px] flex items-center">
                 <img
-                  src="/assets/exep-ridge-logo.jpg"
+                  src="/assets/exep-ridge-logo-transparent.png"
                   alt="مَوْثِق — جسر الخبرة | EXEP-RIDGE"
                   className="h-10 w-auto object-contain"
                 />

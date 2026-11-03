@@ -92,7 +92,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenApply }) => {
 
         {/* 1. Full-Width Transparent Headline in Exactly ONE Single Line (Cairo Font) */}
         <div className="w-full text-right mb-8">
-          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-[2.35rem] xl:text-[2.7rem] font-bold leading-tight font-sans whitespace-nowrap text-[#0F2D5B]/80">
+          <h1
+            className="font-bold leading-tight font-sans text-[#0F2D5B]/80 whitespace-nowrap transition-all duration-300"
+            style={{
+              fontSize:
+                slide.title.length > 65
+                  ? 'clamp(1.1rem, 1.8vw, 2.05rem)'
+                  : slide.title.length > 55
+                  ? 'clamp(1.25rem, 2.1vw, 2.35rem)'
+                  : 'clamp(1.35rem, 2.45vw, 2.65rem)',
+            }}
+          >
             {slide.title}
           </h1>
         </div>

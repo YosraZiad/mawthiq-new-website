@@ -43,7 +43,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenApply }) => {
           <a href="#" className="flex items-center gap-3.5 group select-none">
             <div className="h-11 w-auto max-w-[170px] sm:max-w-[210px] flex items-center justify-center">
               <img
-                src="/assets/exep-ridge-logo.jpg"
+                src="/assets/exep-ridge-logo-transparent.png"
                 alt="مَوْثِق — جسر الخبرة | EXEP-RIDGE"
                 className="h-10 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
               />
