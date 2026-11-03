@@ -12,9 +12,9 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({ isOpen, onCl
     name: '',
     email: '',
     phone: '',
-    track: 'domain',
+    domain: 'biz-dev',
     portfolioUrl: '',
-    note: '',
+    contribution: '',
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -28,7 +28,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({ isOpen, onCl
     setTimeout(() => {
       setLoading(false);
       setSubmitted(true);
-    }, 700);
+    }, 600);
   };
 
   const handleReset = () => {
@@ -37,9 +37,9 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({ isOpen, onCl
       name: '',
       email: '',
       phone: '',
-      track: 'domain',
+      domain: 'biz-dev',
       portfolioUrl: '',
-      note: '',
+      contribution: '',
     });
     onClose();
   };
@@ -48,34 +48,34 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({ isOpen, onCl
     <AnimatePresence>
       <div className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6">
         
-        {/* Modal Window */}
+        {/* Modal Container */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 10 }}
+          initial={{ opacity: 0, scale: 0.96, y: 12 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 10 }}
-          transition={{ duration: 0.25 }}
-          className="relative w-full max-w-xl bg-white border border-[#E2DDD3] rounded-2xl p-6 sm:p-10 shadow-2xl text-right"
+          exit={{ opacity: 0, scale: 0.96, y: 12 }}
+          transition={{ duration: 0.22 }}
+          className="relative w-full max-w-xl bg-white border border-[#E2DDD3] rounded-2xl p-6 sm:p-10 shadow-2xl text-right max-h-[90vh] overflow-y-auto"
         >
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="absolute top-5 left-5 text-slate-400 hover:text-slate-700 p-2 rounded-lg hover:bg-slate-100 transition-colors"
-            aria-label="إغلاق"
+            className="absolute top-5 left-5 text-slate-400 hover:text-slate-800 p-2 rounded-lg hover:bg-slate-100 transition-colors"
+            aria-label="إغلاق النافذة"
           >
             <X className="w-5 h-5" />
           </button>
 
           {!submitted ? (
             <div>
-              <div className="mb-8">
-                <span className="text-xs font-bold text-[#D4AF7C] uppercase block mb-1 tracking-mono">
-                  جسر الخبرة | مبادرة مَوْثِق
+              <div className="mb-6">
+                <span className="text-xs font-mono font-bold text-[#D4AF7C] uppercase block mb-1 tracking-mono">
+                  طلب الانضمام كشريك بناء
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-[#0F2D5B]">
-                  عرّف بنفسك وبخبرتك الميدانية
+                <h3 className="text-2xl sm:text-3xl font-black text-[#0F2D5B]">
+                  انضم إلى مبادرة مَوْثِق
                 </h3>
                 <p className="mt-2 text-xs sm:text-sm text-slate-600 font-light leading-relaxed">
-                  نراجع كافة المبادرات بسرية تامة. ما يهمنا هو عمق معرفتك بالقطاع، التحدي الذي يشغلك، واستعدادك للبناء التقني المشترك.
+                  شاركنا معلوماتك وخبراتك، والمسؤولية التي ترغب في توليها لمناقشة أطر الشراكة. لا نبحث عن سيرة ذاتية مثالية، بل عن قدرة حقيقية ومبادرة.
                 </p>
               </div>
 
@@ -89,10 +89,10 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({ isOpen, onCl
                   <input
                     type="text"
                     required
-                    placeholder="مثال: م. فهد السعيد"
+                    placeholder="اكتب اسمك الثلاثي"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-[#F8F6EF] border border-[#E2DDD3] rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#D4AF7C] focus:bg-white text-sm"
+                    className="w-full px-4 py-2.5 bg-[#F8F6EF] border border-[#E2DDD3] rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#0F2D5B] focus:bg-white text-sm"
                   />
                 </div>
 
@@ -108,83 +108,85 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({ isOpen, onCl
                       placeholder="name@domain.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-[#F8F6EF] border border-[#E2DDD3] rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#D4AF7C] focus:bg-white text-sm text-left"
+                      className="w-full px-4 py-2.5 bg-[#F8F6EF] border border-[#E2DDD3] rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#0F2D5B] focus:bg-white text-sm text-left"
                       dir="ltr"
                     />
                   </div>
 
                   <div>
                     <label className="block text-xs font-bold text-[#0F2D5B] mb-1.5">
-                      رقم الجوال / واتساب
+                      رقم الجوال / واتساب <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="tel"
+                      required
                       placeholder="+966 5x xxx xxxx"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-[#F8F6EF] border border-[#E2DDD3] rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#D4AF7C] focus:bg-white text-sm text-left"
+                      className="w-full px-4 py-2.5 bg-[#F8F6EF] border border-[#E2DDD3] rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#0F2D5B] focus:bg-white text-sm text-left"
                       dir="ltr"
                     />
                   </div>
                 </div>
 
-                {/* Track */}
+                {/* Capability Domain Matching Management Document */}
                 <div>
                   <label className="block text-xs font-bold text-[#0F2D5B] mb-1.5">
-                    المجال التخصصي الأساسي
+                    مجال القدرة والخبرة الأساسي <span className="text-red-500">*</span>
                   </label>
                   <select
-                    value={formData.track}
-                    onChange={(e) => setFormData({ ...formData, track: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-[#F8F6EF] border border-[#E2DDD3] rounded-lg text-slate-900 focus:outline-none focus:border-[#D4AF7C] focus:bg-white text-sm font-sans"
+                    value={formData.domain}
+                    onChange={(e) => setFormData({ ...formData, domain: e.target.value })}
+                    className="w-full px-4 py-2.5 bg-[#F8F6EF] border border-[#E2DDD3] rounded-lg text-slate-900 focus:outline-none focus:border-[#0F2D5B] focus:bg-white text-sm font-sans"
                   >
-                    <option value="domain">خبرة قطاعية عميقة (لوجستيات / تجارة / مالية / سلاسل إمداد)</option>
-                    <option value="tech">هندسة البرمجيات والبنى التحتية (Systems & Software Architecture)</option>
-                    <option value="operations">القيادة التنفيذية وإدارة العمليات (Operations & Strategy)</option>
-                    <option value="product">تصميم المنتجات وتجربة المستخدم (Product & UX)</option>
-                    <option value="other">مجال استراتيجي آخر</option>
+                    <option value="biz-dev">1. تطوير الأعمال وفهم السوق والعملاء</option>
+                    <option value="product-tech">2. المنتجات والتقنية وهندسة النظم</option>
+                    <option value="operations">3. التشغيل والإدارة الاستراتيجية</option>
+                    <option value="finance">4. المالية والحوكمة والسياسات</option>
+                    <option value="partnerships">5. العلاقات والشراكات الاستراتيجية</option>
+                    <option value="other">6. مجالات وقدرات نوعية أخرى</option>
                   </select>
                 </div>
 
-                {/* Link */}
+                {/* Professional Link */}
                 <div>
                   <label className="block text-xs font-bold text-[#0F2D5B] mb-1.5">
-                    رابط الحساب المهني (LinkedIn أو نبذة شخصية)
+                    رابط الحساب المهني (LinkedIn أو نبذة أعمال)
                   </label>
                   <input
                     type="url"
                     placeholder="https://linkedin.com/in/..."
                     value={formData.portfolioUrl}
                     onChange={(e) => setFormData({ ...formData, portfolioUrl: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-[#F8F6EF] border border-[#E2DDD3] rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#D4AF7C] focus:bg-white text-sm text-left"
+                    className="w-full px-4 py-2.5 bg-[#F8F6EF] border border-[#E2DDD3] rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#0F2D5B] focus:bg-white text-sm text-left"
                     dir="ltr"
                   />
                 </div>
 
-                {/* Idea / Note */}
+                {/* Contribution & Responsibility */}
                 <div>
                   <label className="block text-xs font-bold text-[#0F2D5B] mb-1.5">
-                    نبذة مقتضبة عن خبرتك أو الفكرة التي تسعى لبنائها <span className="text-red-500">*</span>
+                    القيمة والمسؤولية التي ترغب في إضافتها إلى موثق <span className="text-red-500">*</span>
                   </label>
                   <textarea
                     rows={3}
                     required
-                    placeholder="ما هي المشكلة الميدانية التي تراها، وما الذي تتوقع أن يقدمه الشريك التقني لإنجاحها؟"
-                    value={formData.note}
-                    onChange={(e) => setFormData({ ...formData, note: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-[#F8F6EF] border border-[#E2DDD3] rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#D4AF7C] focus:bg-white text-sm"
+                    placeholder="أخبرنا بما تستطيع إضافته إلى الكيان، والمسؤولية التي ترغب في توليها..."
+                    value={formData.contribution}
+                    onChange={(e) => setFormData({ ...formData, contribution: e.target.value })}
+                    className="w-full px-4 py-2.5 bg-[#F8F6EF] border border-[#E2DDD3] rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#0F2D5B] focus:bg-white text-sm"
                   />
                 </div>
 
-                {/* Submit */}
+                {/* Notice & Submit Button */}
                 <div className="pt-3 flex items-center justify-between gap-4">
                   <span className="text-xs text-slate-500 font-light">
-                    سرية تامة لجميع البيانات
+                    نراجع كافة الطلبات بسرية تامة
                   </span>
                   <button
                     type="submit"
                     disabled={loading}
-                    className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#0F2D5B] hover:bg-[#163E7A] text-white font-bold text-sm rounded transition-colors shadow-sm disabled:opacity-50"
+                    className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#0F2D5B] hover:bg-[#17407D] text-white font-bold text-sm rounded transition-colors shadow-sm disabled:opacity-50"
                   >
                     {loading ? (
                       <span>جاري الإرسال...</span>
@@ -200,26 +202,26 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({ isOpen, onCl
               </form>
             </div>
           ) : (
-            /* Confirmation */
+            /* Confirmation Screen */
             <div className="py-10 text-center space-y-5">
-              <div className="w-16 h-16 rounded-full bg-[#F5ECE0] border border-[#D4AF7C] text-[#0F2D5B] flex items-center justify-center mx-auto">
+              <div className="w-16 h-16 rounded-full bg-[#0F2D5B]/5 border border-[#D4AF7C] text-[#0F2D5B] flex items-center justify-center mx-auto">
                 <CheckCircle2 className="w-8 h-8 text-[#D4AF7C]" />
               </div>
 
               <h3 className="text-2xl font-bold text-[#0F2D5B]">
-                تم استلام طلبك باهتمام
+                تم استلام طلب الانضمام بنجاح
               </h3>
 
               <p className="text-xs sm:text-sm text-slate-600 max-w-sm mx-auto leading-relaxed">
-                شكراً لمبادرتك ومشاركتنا رؤيتك. سيقوم فريق <strong>جسر الخبرة | مَوْثِق</strong> بدراسة التفاصيل والتواصل معك قريباً لبحث آفاق التعاون.
+                شكراً لاهتمامك ومبادرتك. سيقوم فريق <strong>مَوْثِق (جسر الخبرة)</strong> بمراجعة طلبك ودراسة التوافق، والتواصل معك لمناقشة الخطوة التالية.
               </p>
 
-              <div className="pt-3">
+              <div className="pt-4">
                 <button
                   onClick={handleReset}
-                  className="px-5 py-2 rounded-lg text-xs sm:text-sm font-bold bg-[#F8F6EF] hover:bg-[#F2EFE4] text-[#0F2D5B] border border-[#E2DDD3] transition-colors"
+                  className="px-6 py-2.5 rounded-lg text-xs sm:text-sm font-bold bg-[#0F2D5B] text-white hover:bg-[#17407D] transition-colors"
                 >
-                  العودة للصفحة الرئيسية
+                  العودة للصفحة
                 </button>
               </div>
             </div>

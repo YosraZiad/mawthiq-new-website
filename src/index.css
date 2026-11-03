@@ -7,20 +7,24 @@
     background-color: #F8F6EF;
     color: #0F172A;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-    letter-spacing: normal;
+    letter-spacing: normal !important;
   }
 
-  /* Ensure Arabic cursive script is never broken by letter-spacing */
-  h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, select {
-    letter-spacing: normal;
+  /* Strict protection for Arabic cursive script */
+  *:lang(ar), [dir="rtl"], [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, 
+  [dir="rtl"] h4, [dir="rtl"] h5, [dir="rtl"] h6, [dir="rtl"] p, 
+  [dir="rtl"] span:not(.en-only), [dir="rtl"] a:not(.en-only), 
+  [dir="rtl"] button:not(.en-only), [dir="rtl"] div:not(.en-only) {
+    letter-spacing: normal !important;
   }
 
-  .tracking-mono {
+  /* Latin only tracking */
+  .en-only {
     letter-spacing: 0.06em;
   }
 }
 
-/* Hairline border rule like EF & SPC with Brand Warmth */
+/* Hairline border rule with Brand Warmth */
 .editorial-rule {
   border-color: #E2DDD3;
 }

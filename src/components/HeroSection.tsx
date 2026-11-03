@@ -1,161 +1,271 @@
-import React from 'react';
-import { ArrowLeft, Sparkles, Layers, Terminal, Cpu, TrendingUp } from 'lucide-react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { ArrowLeft, ChevronRight, ChevronLeft, ArrowDown } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { heroSlidesData } from '../data/content';
 
 interface HeroSectionProps {
   onOpenApply: () => void;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenApply }) => {
-  const pillars = [
-    { title: 'حلول برمجية متكاملة', sub: 'Integrated Solutions', icon: Layers },
-    { title: 'تطوير المنتجات الرقمية', sub: 'Product Development', icon: Terminal },
-    { title: 'هندسة النظم المتقدمة', sub: 'System Engineering', icon: Cpu },
-    { title: 'النمو والتوسع المؤسسي', sub: 'Growth & Scalability', icon: TrendingUp },
-  ];
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  const SLIDE_DURATION = 7000; // 7 seconds per slide
+  const UPDATE_INTERVAL = 50; // update progress every 50ms
+
+  // Auto-slide effect with progress tracking and pause on hover
+  useEffect(() => {
+    if (isPaused) return;
+
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          setCurrentSlide((curr) => (curr + 1) % heroSlidesData.length);
+          return 0;
+        }
+        return prev + (UPDATE_INTERVAL / SLIDE_DURATION) * 100;
+      });
+    }, UPDATE_INTERVAL);
+
+    return () => clearInterval(interval);
+  }, [isPaused, currentSlide]);
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+    setProgress(0);
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide((curr) => (curr + 1) % heroSlidesData.length);
+    setProgress(0);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((curr) => (curr - 1 + heroSlidesData.length) % heroSlidesData.length);
+    setProgress(0);
+  };
+
+  const slide = heroSlidesData[currentSlide];
 
   return (
-    <div className="relative overflow-hidden bg-[#F8F6EF] border-b border-[#E2DDD3]">
-      
-      {/* Editorial Hero Content */}
-      <section className="pt-16 pb-20 md:pt-24 md:pb-28">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8 text-right">
+    <section
+      className="relative overflow-hidden bg-[#F8F6EF] border-b border-[#E2DDD3] select-none"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      aria-roledescription="carousel"
+      aria-label="القسم الرئيسي لصفحة استقطاب الشركاء"
+    >
+      {/* Background Architectural Grid Pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#E2DDD3_1px,transparent_1px),linear-gradient(to_bottom,#E2DDD3_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-35 pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-12 pb-16 md:pt-20 md:pb-24">
+        
+        {/* Editorial Top Slider Bar: Numbering + Status */}
+        <div className="flex items-center justify-between border-b border-[#E2DDD3] pb-4 mb-10 text-xs text-[#64748B]">
+          <div className="flex items-center gap-3">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0F2D5B]/5 border border-[#D4AF7C]/40 text-[#0F2D5B] font-bold font-sans">
+              <span className="w-2 h-2 rounded-full bg-[#D4AF7C] animate-pulse"></span>
+              <span>{slide.badge}</span>
+            </span>
+            <span className="hidden sm:inline-block text-[#94A3B8]">|</span>
+            <span className="hidden sm:inline-block font-sans text-slate-600 font-medium">
+              {slide.subtitle}
+            </span>
+          </div>
+
+          {/* Slider Counter: 01 / 03 */}
+          <div className="flex items-center gap-3">
+            {isPaused && (
+              <span className="text-[11px] font-sans text-[#D4AF7C] font-semibold bg-[#0F2D5B]/5 px-2 py-0.5 rounded">
+                قراءة متأنية
+              </span>
+            )}
+            <div className="text-sm font-bold text-[#0F2D5B] font-mono en-only" dir="ltr">
+              <span className="text-[#D4AF7C]">{slide.number}</span>
+              <span className="text-[#94A3B8] mx-1">/</span>
+              <span>03</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Main 60/40 Asymmetrical Editorial Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
-            
-            {/* Right Column: High Conviction Manifesto (EF Voice + SPC Editorial Form) */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="lg:col-span-7 space-y-7"
-            >
-              {/* Badge Tag */}
-              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#F2EFE4] border border-[#D4AF7C]/50 text-xs font-semibold text-[#0F2D5B]">
-                <span className="w-2 h-2 rounded-full bg-[#D4AF7C] animate-pulse"></span>
-                <span>جسر الخبرة | مبادرة مَوْثِق للحلول البرمجية المتكاملة</span>
-              </div>
+          {/* Right Column (60%): High Conviction Editorial Manifesto */}
+          <div className="lg:col-span-7 text-right">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={slide.id}
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -14 }}
+                transition={{ duration: 0.35, ease: 'easeOut' }}
+                className="space-y-6"
+              >
+                {/* Main Headline from Management Document */}
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0F2D5B] leading-[1.25] font-sans">
+                  {slide.title}
+                </h1>
 
-              {/* Headline */}
-              <div className="space-y-3">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0F2D5B] leading-[1.2] font-sans">
-                  الأفكار الاستثنائية لا تُبنى في العزلة.
-                </h2>
-                <div className="flex items-center gap-3 text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[#D4AF7C] leading-[1.2]">
-                  <span className="text-2xl sm:text-3xl md:text-4xl text-[#0F2D5B]">←</span>
-                  <span>حَوِّلْ خِبْرَتَكَ إِلَى حُلُولٍ حَقِيقِيَّة</span>
-                </div>
-              </div>
-
-              {/* High Conviction Statement */}
-              <div className="space-y-4 text-slate-700 text-lg sm:text-xl font-light leading-relaxed">
-                <p>
-                  نحوّل الكفاءات وأصحاب المعرفة القطاعية العميقة إلى شركاء بناء ومؤسسين لمشاريع وأنظمة نوعية. 
-                  نضع بين يديك قدراتنا البرمجية والهندسية لنبني معاً من الصفر حلولاً تسد فجوات السوق الحقيقية.
+                {/* Primary Content Paragraph */}
+                <p className="text-lg sm:text-xl text-slate-700 leading-relaxed font-light">
+                  {slide.lead}
                 </p>
-                <p className="text-sm sm:text-base text-slate-600">
-                  قد تمتلك فكرة واعدة في مراحلها الأولى، أو خبرة تشغيلية عميقة تبحث عن الشريك التقني القادر على تنفيذها. 
-                  ما يهمنا بالدرجة الأولى هو عمق كفاءتك، شغفك، وجاهزيتك للمبادرة.
-                </p>
-              </div>
 
-              {/* Action Buttons */}
-              <div className="pt-2 flex flex-wrap items-center gap-4">
-                <button
-                  onClick={onOpenApply}
-                  className="group inline-flex items-center gap-3 px-7 py-3.5 bg-[#0F2D5B] text-white hover:bg-[#163E7A] font-bold text-base rounded shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5 active:translate-y-0"
-                >
-                  <span>قدّم مبادرتك / عرّف بنفسك</span>
-                  <ArrowLeft className="w-4 h-4 text-[#D4AF7C] transition-transform group-hover:-translate-x-1" />
-                </button>
-
-                <a
-                  href="#vision"
-                  className="inline-flex items-center gap-2 px-5 py-3.5 border border-[#E2DDD3] hover:border-[#D4AF7C] text-slate-800 hover:text-[#0F2D5B] font-semibold text-sm rounded bg-white/60 hover:bg-white transition-colors"
-                >
-                  <Sparkles className="w-4 h-4 text-[#D4AF7C]" />
-                  <span>استكشف مجالات البناء المشترك</span>
-                </a>
-              </div>
-            </motion.div>
-
-            {/* Left Column: Architectural Capability Card (SPC Minimal Layout) */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="lg:col-span-5"
-            >
-              <div className="bg-white border border-[#E2DDD3] p-7 sm:p-9 rounded-xl shadow-xs space-y-6">
-                
-                <div className="border-b border-[#E2DDD3] pb-4">
-                  <span className="text-[11px] font-mono uppercase tracking-mono text-[#D4AF7C] font-bold block mb-1">
-                    EXEP-RIDGE SOFTWARE SOLUTIONS
-                  </span>
-                  <h3 className="text-xl font-bold text-[#0F2D5B]">
-                    ركائز البناء التقني في جسر الخبرة
-                  </h3>
-                  <p className="text-xs text-slate-500 mt-1">
-                    منظومة متكاملة لربط الخبرة الميدانية بالهندسة البرمجية
+                {/* Subtitle / Philosophy Note */}
+                <div className="p-4 rounded-lg bg-[#FAF8F2] border-r-4 border-[#D4AF7C] border-y border-l border-[#E2DDD3]">
+                  <p className="text-sm sm:text-base text-slate-800 font-medium">
+                    «نبني منظومة عمل متكاملة تكبر بالمشاركة الفعلية والمسؤولية المستدامة، ونحول طاقات الشركاء إلى قيمة تجارية وحلول قابلة للتوسع.»
                   </p>
                 </div>
 
-                {/* 4 Pillars Mini List */}
-                <div className="space-y-4">
-                  {pillars.map((item, idx) => {
-                    const Icon = item.icon;
-                    return (
-                      <div
-                        key={idx}
-                        className="flex items-center gap-3.5 p-3 rounded-lg bg-[#F8F6EF]/60 hover:bg-[#F8F6EF] border border-[#E2DDD3]/60 transition-colors"
-                      >
-                        <div className="w-9 h-9 rounded-md bg-[#0F2D5B] text-[#D4AF7C] flex items-center justify-center shrink-0">
-                          <Icon className="w-4 h-4" />
+                {/* Action Buttons */}
+                <div className="pt-2 flex flex-wrap items-center gap-4">
+                  <button
+                    onClick={onOpenApply}
+                    className="group inline-flex items-center gap-3 px-7 py-3.5 bg-[#0F2D5B] text-white hover:bg-[#17407D] font-bold text-base rounded shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5 active:translate-y-0"
+                  >
+                    <span>{slide.ctaPrimary}</span>
+                    <ArrowLeft className="w-4 h-4 text-[#D4AF7C] transition-transform group-hover:-translate-x-1" />
+                  </button>
+
+                  <a
+                    href={slide.secondaryTarget}
+                    className="inline-flex items-center gap-2 px-5 py-3.5 border border-[#E2DDD3] hover:border-[#D4AF7C] text-slate-800 hover:text-[#0F2D5B] font-semibold text-sm rounded bg-white/70 hover:bg-white transition-colors"
+                  >
+                    <span>{slide.ctaSecondary}</span>
+                    <ArrowDown className="w-4 h-4 text-[#D4AF7C]" />
+                  </a>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Left Column (40%): Live Architectural Blueprint Panel */}
+          <div className="lg:col-span-5">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={slide.id}
+                initial={{ opacity: 0, scale: 0.97 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.97 }}
+                transition={{ duration: 0.35, ease: 'easeOut' }}
+                className="bg-white border border-[#E2DDD3] p-7 sm:p-8 rounded-xl shadow-xs space-y-6 text-right relative overflow-hidden"
+              >
+                {/* Blueprint Header */}
+                <div className="border-b border-[#E2DDD3] pb-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-mono tracking-mono text-[#D4AF7C] font-bold uppercase">
+                      MAWTHIQ ARCHITECTURE
+                    </span>
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#2563EB]/80"></span>
+                  </div>
+                  <h3 className="text-xl font-bold text-[#0F2D5B] mt-1">
+                    {slide.blueprint.title}
+                  </h3>
+                </div>
+
+                {/* Blueprint 3 Pillars */}
+                <div className="space-y-3.5">
+                  {slide.blueprint.items.map((item, idx) => (
+                    <div
+                      key={idx}
+                      className="flex items-start gap-3 p-3 rounded-lg bg-[#F8F6EF]/80 border border-[#E2DDD3] hover:border-[#D4AF7C]/60 transition-colors"
+                    >
+                      <div className="w-6 h-6 rounded-md bg-[#0F2D5B] text-white flex items-center justify-center text-xs font-mono font-bold shrink-0 mt-0.5">
+                        {idx + 1}
+                      </div>
+                      <div className="flex-1">
+                        <div className="text-sm font-bold text-[#0F2D5B]">
+                          {item.label}
                         </div>
-                        <div className="text-right flex-1">
-                          <h4 className="font-bold text-sm text-[#0F2D5B] leading-none">
-                            {item.title}
-                          </h4>
-                          <span className="text-[10px] font-mono text-slate-500 block mt-1">
-                            {item.sub}
-                          </span>
+                        <div className="text-xs text-slate-500 mt-0.5">
+                          {item.sub}
                         </div>
                       </div>
-                    );
-                  })}
+                    </div>
+                  ))}
                 </div>
 
-                <div className="pt-2 border-t border-[#E2DDD3] text-[11px] text-slate-500 flex items-center justify-between">
-                  <span>منهجية العمل</span>
-                  <span className="font-bold text-[#0F2D5B]">بناء حلول مؤسسية حقيقية</span>
+                {/* Blueprint Output Box */}
+                <div className="pt-2 border-t border-[#E2DDD3]">
+                  <div className="p-3.5 rounded-lg bg-[#0F2D5B] text-white">
+                    <span className="text-[11px] font-bold text-[#D4AF7C] block font-sans">
+                      المحصلة والهدف
+                    </span>
+                    <p className="text-xs sm:text-sm font-medium mt-1 text-slate-100 font-sans">
+                      {slide.blueprint.output}
+                    </p>
+                  </div>
                 </div>
 
-              </div>
-            </motion.div>
-
+              </motion.div>
+            </AnimatePresence>
           </div>
 
         </div>
-      </section>
 
-      {/* Hairline Divider Transition Bar (EF & SPC Style) */}
-      <section className="bg-[#F2EFE4] border-t border-[#E2DDD3] py-4 text-right">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs sm:text-sm text-slate-700">
+        {/* Editorial Slider Bottom Control Bar */}
+        <div className="mt-12 pt-6 border-t border-[#E2DDD3] flex flex-col sm:flex-row items-center justify-between gap-5">
+          
+          {/* Quick Stage Tabs: [01] [02] [03] */}
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#D4AF7C]"></span>
-            <span className="font-mono text-[#0F2D5B] font-bold">01 /</span>
-            <span className="font-semibold text-[#0F2D5B]">انضم إلى جسر الخبرة كشريك تخصصي أو معماري تقني</span>
+            {heroSlidesData.map((s, idx) => {
+              const isActive = idx === currentSlide;
+              return (
+                <button
+                  key={s.id}
+                  onClick={() => goToSlide(idx)}
+                  className={`flex items-center gap-2 px-3.5 py-1.5 rounded text-xs font-mono transition-all ${
+                    isActive
+                      ? 'bg-[#0F2D5B] text-white font-bold shadow-xs'
+                      : 'bg-white/80 text-slate-600 border border-[#E2DDD3] hover:border-[#D4AF7C] hover:text-[#0F2D5B]'
+                  }`}
+                  aria-label={`الانتقال إلى الشريحة ${s.number}`}
+                >
+                  <span>{s.number}</span>
+                  <span className="hidden md:inline font-sans font-medium text-[11px]">
+                    {s.title.slice(0, 26)}...
+                  </span>
+                </button>
+              );
+            })}
           </div>
-          <a
-            href="#journey"
-            className="text-[#0F2D5B] hover:text-[#2563EB] font-bold underline underline-offset-4 flex items-center gap-1.5"
-          >
-            <span>استكشف مسار التمكين والتحقق الميداني</span>
-            <ArrowLeft className="w-3.5 h-3.5 text-[#D4AF7C]" />
-          </a>
-        </div>
-      </section>
 
-    </div>
+          {/* Progress Timeline Indicator */}
+          <div className="flex-1 max-w-xs w-full mx-4 hidden sm:block">
+            <div className="h-1.5 w-full bg-[#E2DDD3] rounded-full overflow-hidden">
+              <motion.div
+                className="h-full bg-[#D4AF7C]"
+                style={{ width: `${progress}%` }}
+                transition={{ ease: 'linear', duration: 0.05 }}
+              />
+            </div>
+          </div>
+
+          {/* Manual Arrow Controls */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={prevSlide}
+              className="p-2 rounded border border-[#E2DDD3] bg-white/80 hover:bg-[#0F2D5B] hover:text-white text-[#0F2D5B] transition-colors"
+              aria-label="الشريحة السابقة"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+            <button
+              onClick={nextSlide}
+              className="p-2 rounded border border-[#E2DDD3] bg-white/80 hover:bg-[#0F2D5B] hover:text-white text-[#0F2D5B] transition-colors"
+              aria-label="الشريحة التالية"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
   );
 };
